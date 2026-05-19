@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SistEscolar1.Controller;
 using SistEscolar1.View;
 
+
 namespace SistEscolar1.Model
 {
     public class EscolarModel

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using SistEscolar1.Controller;
 using SistEscolar1.View;
+using SistEscolar1.Repositorios;
 
 namespace SistEscolar1
 {
