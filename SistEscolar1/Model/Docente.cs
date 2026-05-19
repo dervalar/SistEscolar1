@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Model
 {
-     class Docente : Persona, IReportable
+     public class Docente : Persona, IReportable
     {
         public string NoEmpleado { get; private set; }
 

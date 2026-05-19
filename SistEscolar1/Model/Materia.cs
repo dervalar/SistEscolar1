@@ -1,4 +1,5 @@
-﻿using SistEscolar1.Model.Interface;
+﻿using SistEscolar1.Excepciones;
+using SistEscolar1.Model.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Model
 {
-    internal class Materia : IInscribible, IReportable
+    public class Materia : IInscribible, IReportable
     {
         public string Codigo { get; private set; }
         public string Nombre { get; private set; }
@@ -37,7 +38,7 @@ namespace SistEscolar1.Model
                     }
                     else
                     {
-                        Console.WriteLine("Ya no hay más cupos disponibles...");
+                        throw new SinCupoException(Nombre);
                     }
                 }
                 else
@@ -47,7 +48,8 @@ namespace SistEscolar1.Model
             }
             else if (p is Docente)
             {
-                Console.WriteLine($"{p.Nombre} ya se encuentra inscripto...");
+                throw new InvalidOperationException(
+                    $"{p.Nombre} ya está inscripto en {Nombre}.");
             }
             else
             {

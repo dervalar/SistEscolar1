@@ -1,29 +1,41 @@
-﻿using System;
+﻿using SistEscolar1.Repositorios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistEscolar1.Controller;
+using SistEscolar1.View;
 
 namespace SistEscolar1.Model
 {
-    internal class EscolarModel
+    public class EscolarModel
     {
+        private readonly IRepositorioAlumnos _repoAlumnos;
+        private readonly IRepositorioMaterias _repoMaterias;
 
-        public List<Persona> Personas { get; } = new List<Persona>();
-        public List<Materia> Materias { get; } = new List<Materia>();
-        public void AgregarPersona(Persona p) => Personas.Add(p);
-        public void AgregarMateria(Materia m) => Materias.Add(m);
-        public Alumno BuscarAlumnoPorLegajo(int legajo)
+        // Los repositorios se inyectan desde Program.cs
+        public EscolarModel(IRepositorioAlumnos repoAlumnos,
+        IRepositorioMaterias repoMaterias)
         {
-            foreach (var p in Personas)
-                if (p is Alumno a && a.Legajo == legajo) return a;
-            return null;
+            _repoAlumnos = repoAlumnos;
+            _repoMaterias = repoMaterias;
         }
-        public Materia BuscarMateriaPorCodigo(string codigo)
+        public void AgregarAlumno(Alumno a) => _repoAlumnos.Agregar(a);
+        public void AgregarMateria(Materia m) => _repoMaterias.Agregar(m);
+        public List<Alumno> ObtenerAlumnos() => _repoAlumnos.ObtenerTodos();
+        public List<Materia> ObtenerMaterias() => _repoMaterias.ObtenerTodos();
+        public Alumno? BuscarAlumno(int legajo) =>
+        _repoAlumnos.BuscarPorLegajo(legajo);
+        public Materia? BuscarMateria(string codigo) =>
+        _repoMaterias.BuscarPorCodigos(codigo);
+
+        // Llama a Guardar() en todos los repositorios.
+        // En memoria no hace nada; en JSON guarda los archivos.
+        public void GuardarTodo()
         {
-            foreach (var m in Materias)
-                if (m.Codigo == codigo) return m;
-            return null;
+            _repoAlumnos.Guardar();
+            _repoMaterias.Guardar();
         }
 
     }

@@ -20,8 +20,16 @@ namespace SistEscolar1.View
             Console.WriteLine("5. Ver reporte de materia");
             Console.WriteLine("6. Agregar nota");
             Console.WriteLine("7. Ver promedio de alumno");
+            Console.WriteLine("8. Cambiar estrategia");
             Console.WriteLine("0. Salir");
             Console.Write("Opcion: ");
+        }
+        public void MostrarError(string mensaje)
+        {
+            ConsoleColor prev = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($" Error: {mensaje}");
+            Console.ForegroundColor = prev;
         }
 
         public void MostrarMensaje(string mensaje)

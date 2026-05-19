@@ -8,11 +8,21 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Model
 {
-     class Alumno : Persona, ICalificable, IReportable
+     public class Alumno : Persona, ICalificable, IReportable
     {
         public int Legajo { get; private set; }
         private List<double> notas = new List<double>();
         private IStratPromedio _estrategia;
+        
+        // Permite que el repo JSON lea las notas para guardarlas en disco
+        public List<double> ObtenerNotas() => new List<double>(notas);
+
+        // Permite que el repo JSON recargue notas al iniciar
+        public void CargarNotas(IEnumerable<double> notas)
+        {
+            _notas.Clear();
+            foreach (var n in notas) _notas.Add(n);
+        }
 
         public Alumno(string nombre, string email, int legajo,
              IStratPromedio estrategia = null) : base(nombre, email)

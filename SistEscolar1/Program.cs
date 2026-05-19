@@ -12,18 +12,52 @@ namespace SistEscolar1
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("╔══════════════════════════════╗");
+            Console.WriteLine("║ SISTEMA ESCOLAR v3.0 ║");
+            Console.WriteLine("╚══════════════════════════════╝");
+            Console.WriteLine();
+            Console.WriteLine("¿Cómo desea iniciar el sistema?");
+            Console.WriteLine(" 1. Datos en memoria (sin persistencia)");
+            Console.WriteLine(" 2. Datos persistidos en disco (JSON)");
+            Console.Write("Opción: ");
+            string opcionInicio = Console.ReadLine() ?? "1";
+            
+            // Elegimos los repositorios según la preferencia del usuario.
+            // El Controller nunca sabrá cuál de los dos se está usando.
+            
+            IRepositorioAlumnos repoAlumnos;
+            IRepositorioMaterias repoMaterias;
+            
+            if (opcionInicio == "2")
+            {
+                repoAlumnos = new RepositorioAlumnosJson("alumnos.json");
+                repoMaterias = new RepositorioMateriasJson("materias.json", repoAlumnos);
+                Console.WriteLine("→ Cargando datos desde disco...");
+            }
+            else
+            {
+                repoAlumnos = new RepositorioAlumnosMemoria();
+                repoMaterias = new RepositorioMateriasMemoria();
+                repoAlumnos.Agregar(new Alumno("Ana", "ana@mail.com", 1001));
+                repoAlumnos.Agregar(new Alumno("Bruno", "bruno@mail.com", 1002));
+                repoMaterias.Agregar(new Materia("MAT101", "Matematica I", 3));
+                Console.WriteLine("→ Sistema iniciado con datos de prueba.");
+            }
+
             EscolarModel model = new EscolarModel();
             EscolarView view = new EscolarView();
             EscolarController cctr = new EscolarController(model, view);
 
-            // Cargar datos de prueba
+            /* Cargar datos de prueba
             model.AgregarPersona(new Alumno("Ana", "ana@mail.com", 1001));
             model.AgregarPersona(new Alumno("Bruno", "bruno@mail.com", 1002));
             model.AgregarMateria(new Materia("MAT101", "Matematica I", 3));
-
+            */
 
             cctr.Ejecutar();
         }
+
         /*
          static void Main(string[] args)
         {
