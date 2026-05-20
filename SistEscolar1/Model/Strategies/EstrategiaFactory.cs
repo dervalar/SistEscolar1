@@ -8,11 +8,10 @@ namespace SistEscolar1.Model.Strategies
 {
     public static class EstrategiaFactory
     {
-        public static IEstrategiaPromedio Crear(string nombre) => nombre switch
+        public static IStratPromedio Crear(string nombre) => nombre switch
         {
             nameof(PromedioPonderado) => new PromedioPonderado(),
-            nameof(PromedioSinExtremos) => new PromedioSinExtremos(),
-            nameof(PromedioAprobacion) => new PromedioAprobacion(),
+            nameof(PromedioSinExtremo) => new PromedioSinExtremo(),
             _ => new PromedioSimple(), // default
         };
     }

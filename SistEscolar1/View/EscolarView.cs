@@ -36,6 +36,12 @@ namespace SistEscolar1.View
         {
             Console.WriteLine(mensaje);
         }
+        public void MostrarAlumnos(List<Alumno> alumnos)
+        {
+            Console.WriteLine("\n-- Alumnos en el sistema --");
+            foreach (var p in alumnos)
+                p.Presentarse();
+        }
         public void MostrarPersonas(List<Persona> personas)
         {
             Console.WriteLine("\n-- Personas en el sistema --");

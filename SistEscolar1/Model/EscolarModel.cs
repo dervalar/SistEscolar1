@@ -39,5 +39,9 @@ namespace SistEscolar1.Model
             _repoMaterias.Guardar();
         }
 
+        internal void AgregarPersona(Docente docente)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

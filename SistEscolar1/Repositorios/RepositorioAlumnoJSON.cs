@@ -4,6 +4,7 @@ using SistEscolar1.Model;
 using SistEscolar1.Model.Strategies;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -15,7 +16,7 @@ namespace SistEscolar1.Repositorios
     {
         private readonly string _path;
         private readonly List<Alumno> _alumnos;
-        public RepositorioAlumnosJson(string path)
+        public RepositorioAlumnoJSON(string path)
         {
             _path = path;
             _alumnos = Cargar();

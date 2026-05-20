@@ -31,9 +31,10 @@ namespace SistEscolar1
             IRepositorioMaterias repoMaterias;
             
             if (opcionInicio == "2")
-            {
-                repoAlumnos = new RepositorioAlumnosJson("alumnos.json");
-                repoMaterias = new RepositorioMateriasJson("materias.json", repoAlumnos);
+            { 
+
+                repoAlumnos = new RepositorioAlumnoJSON("alumnos.json");
+                repoMaterias = new RepositorioMateriasJSON("materias.jseon", repoAlumnos);
                 Console.WriteLine("→ Cargando datos desde disco...");
             }
             else
@@ -46,7 +47,7 @@ namespace SistEscolar1
                 Console.WriteLine("→ Sistema iniciado con datos de prueba.");
             }
 
-            EscolarModel model = new EscolarModel();
+            EscolarModel model = new EscolarModel(repoAlumnos,repoMaterias);
             EscolarView view = new EscolarView();
             EscolarController cctr = new EscolarController(model, view);
 

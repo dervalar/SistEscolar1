@@ -23,6 +23,11 @@ namespace SistEscolar1.Model
             Cupo = cupo;
         }
 
+        public List<Persona> devolverInscriptos()
+        {
+            return inscriptos;
+        }
+
         // IInscribible
 
         public void Inscribir(Persona p)

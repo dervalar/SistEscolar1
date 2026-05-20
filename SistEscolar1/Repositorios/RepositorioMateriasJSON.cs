@@ -2,6 +2,7 @@
 using SistEscolar1.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -14,7 +15,7 @@ namespace SistEscolar1.Repositorios
         private readonly string _path;
         private readonly IRepositorioAlumnos _repoAlumnos;
         private readonly List<Materia> _materias;
-        public RepositorioMateriasJson(string path, IRepositorioAlumnos repoAlumnos)
+        public RepositorioMateriasJSON(string path, IRepositorioAlumnos repoAlumnos)
         {
             _path = path;
             _repoAlumnos = repoAlumnos;
@@ -43,7 +44,7 @@ namespace SistEscolar1.Repositorios
                 Codigo = m.Codigo,
                 Nombre = m.Nombre,
                 Cupo = m.Cupo,
-                LegajosInscriptos = m.Inscriptos
+                LegajosInscriptos = m.devolverInscriptos()
                     .OfType<Alumno>().Select(a => a.Legajo).ToList()
             }).ToList();
             string json = JsonSerializer.Serialize(dtos,
@@ -55,5 +56,10 @@ namespace SistEscolar1.Repositorios
         public Materia? BuscarPorCodigo(string c) =>
         _materias.FirstOrDefault(m => m.Codigo == c);
         public List<Materia> ObtenerTodos() => new(_materias);
+
+        public Materia BuscarPorCodigos(string codigo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Repositorios
 {
-    public class RepositorioMaterias : IRepositorioMaterias
+    public class RepositorioMateriasMemoria : IRepositorioMaterias
     {
         private readonly List<Materia> _materias = new();
         public void Agregar(Materia m) => _materias.Add(m);
@@ -16,5 +16,10 @@ namespace SistEscolar1.Repositorios
         _materias.FirstOrDefault(m => m.Codigo == codigo);
         public List<Materia> ObtenerTodos() => new(_materias);
         public void Guardar() { }
+
+        public Materia BuscarPorCodigos(string codigo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

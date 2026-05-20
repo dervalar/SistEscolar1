@@ -14,11 +14,13 @@ namespace SistEscolar1.Controller
 
         private readonly EscolarModel _model;
         private readonly EscolarView _view;
+        List<Persona> personas = new List<Persona>();
         public EscolarController(EscolarModel model, EscolarView view)
         {
             _model = model;
             _view = view;
         }
+
         public void Ejecutar()
         {
             bool continuar = true;
@@ -28,7 +30,7 @@ namespace SistEscolar1.Controller
                 string opcion = _view.PedirTexto("");
                 switch (opcion)
                 {
-                    case "1": _view.MostrarPersonas(_model.Personas); break;
+                    case "1": _view.MostrarAlumnos(_model.ObtenerAlumnos()); break;
                     case "2": AgregarAlumno(); break;
                     case "3": AgregarDocente(); break;
                     case "4": InscribirAlumno(); break;
@@ -97,7 +99,7 @@ namespace SistEscolar1.Controller
         private void VerReporteMateria()
         {
             string codigo = _view.PedirTexto("Codigo de materia: ");
-            var materia = _model.BuscarMateriaPorCodigo(codigo);
+            var materia = _model.BuscarMateria(codigo);
             if (materia == null)
                 _view.MostrarMensaje("Materia no encontrada.");
             else
@@ -106,7 +108,7 @@ namespace SistEscolar1.Controller
         private void VerPromedioAlumno()
         {
             int legajo = _view.PedirEntero("Legajo: ");
-            var alumno = _model.BuscarAlumnoPorLegajo(legajo);
+            var alumno = _model.BuscarAlumno(legajo);
             if (alumno == null)
                 _view.MostrarMensaje("Alumno no encontrado.");
             else
@@ -115,11 +117,14 @@ namespace SistEscolar1.Controller
         private void AgregarNota()
         {
             int legajo = _view.PedirEntero("Legajo: ");
-            var alumno = _model.BuscarAlumnoPorLegajo(legajo);
+            var alumno = _model.BuscarAlumno(legajo);
             int nota = _view.PedirEntero("Nota del alumno: ");
             alumno.AgregarNota(nota);
         }
+        private void CambiarEstrategia()
+        {
 
+        }
 
     }
 }

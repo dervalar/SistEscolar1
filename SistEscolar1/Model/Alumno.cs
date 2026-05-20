@@ -11,17 +11,22 @@ namespace SistEscolar1.Model
      public class Alumno : Persona, ICalificable, IReportable
     {
         public int Legajo { get; private set; }
-        private List<double> notas = new List<double>();
+        public string NombreEstrategia { get; internal set; }
+
+        private List<double> _notas = new List<double>();
         private IStratPromedio _estrategia;
         
         // Permite que el repo JSON lea las notas para guardarlas en disco
-        public List<double> ObtenerNotas() => new List<double>(notas);
+        public List<double> ObtenerNotas() => new List<double>(_notas);
 
         // Permite que el repo JSON recargue notas al iniciar
         public void CargarNotas(IEnumerable<double> notas)
         {
             _notas.Clear();
-            foreach (var n in notas) _notas.Add(n);
+            foreach (var n in notas)
+            {
+                _notas.Add(n);
+            }
         }
 
         public Alumno(string nombre, string email, int legajo,
@@ -41,7 +46,7 @@ namespace SistEscolar1.Model
         public string MostrarNotas()
         {
             string msj = "NOTAS: ";
-            foreach (double d in notas)
+            foreach (double d in _notas)
             {
                 msj += $"{d},";
             }
@@ -53,10 +58,10 @@ namespace SistEscolar1.Model
 
         public void AgregarNota(double nota)
         {
-            notas.Add(nota);
+            _notas.Add(nota);
         }
 
-        public double ObtenerPromedio() => _estrategia.Calcular(notas);
+        public double ObtenerPromedio() => _estrategia.Calcular(_notas);
 
         // IReportable
 
