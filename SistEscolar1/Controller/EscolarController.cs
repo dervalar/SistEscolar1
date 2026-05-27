@@ -74,7 +74,7 @@ namespace SistEscolar1.Controller
         {
             string nombre = _view.PedirTexto("Nombre: ");
             string email = _view.PedirTexto("Email: ");
-            string nro = _view.PedirTexto("Nro empleado: ");
+            int nro = _view.PedirEntero("Nro empleado: ");
             _model.AgregarDocente(new Docente(nombre, email, nro));
             _view.MostrarMensaje("Docente agregado.");
         }

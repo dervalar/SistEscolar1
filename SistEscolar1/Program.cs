@@ -13,54 +13,29 @@ namespace SistEscolar1
     {
         static void Main(string[] args)
         {
+                Console.WriteLine("╔══════════════════════════════╗");
+                Console.WriteLine("║   SISTEMA ESCOLAR v3.0       ║");
+                Console.WriteLine("╚══════════════════════════════╝");
+                Console.WriteLine();
+                
 
-            Console.WriteLine("╔══════════════════════════════╗");
-            Console.WriteLine("║ SISTEMA ESCOLAR v3.0 ║");
-            Console.WriteLine("╚══════════════════════════════╝");
-            Console.WriteLine();
-            Console.WriteLine("¿Cómo desea iniciar el sistema?");
-            Console.WriteLine(" 1. Datos en memoria (sin persistencia)");
-            Console.WriteLine(" 2. Datos persistidos en disco (JSON)");
-            Console.Write("Opción: ");
-            string opcionInicio = Console.ReadLine() ?? "1";
+                IRepositorioAlumnos repoAlumnos;
+                IRepositorioMaterias repoMaterias;
+                IRepositorioDocentes repoDocentes;
+
+                
+                    repoAlumnos = new RepositorioAlumnoJSON("alumnos.json");
+                    repoDocentes = new RepositorioDocenteJSON("docentes.json"); // por ahora sin JSON
+                    repoMaterias = new RepositorioMateriasJSON("materias.json", repoAlumnos);
+                    Console.WriteLine("→ Cargando datos desde disco...");
+                
+                    
+
+                EscolarModel model = new EscolarModel(repoAlumnos, repoMaterias, repoDocentes);
+                EscolarView view = new EscolarView();
+                EscolarController cctr = new EscolarController(model, view);
+                cctr.Ejecutar();
             
-            // Elegimos los repositorios según la preferencia del usuario.
-            // El Controller nunca sabrá cuál de los dos se está usando.
-            
-            IRepositorioAlumnos repoAlumnos;
-            IRepositorioMaterias repoMaterias;
-            IRepositorioDocentes repoDocentes;
-            
-            if (opcionInicio == "2")
-            { 
-
-                repoAlumnos = new RepositorioAlumnoJSON("alumnos.json");
-                repoMaterias = new RepositorioMateriasJSON("materias.json", repoAlumnos);
-                Console.WriteLine("→ Cargando datos desde disco...");
-            }
-            else
-            {
-                repoAlumnos = new RepositorioAlumnosMemoria();
-                repoMaterias = new RepositorioMateriasMemoria();
-                repoDocentes = new 
-                repoAlumnos.Agregar(new Alumno("Ana", "ana@mail.com", 1001));
-                repoAlumnos.Agregar(new Alumno("Bruno", "bruno@mail.com", 1002));
-                repoDocentes.Agregar(new Docente("Mati Mestre", "Mestre@mail.com", 7));
-                repoMaterias.Agregar(new Materia("MAT101", "Matematica I", 3));
-                Console.WriteLine("→ Sistema iniciado con datos de prueba.");
-            }
-
-            EscolarModel model = new EscolarModel(repoAlumnos, repoMaterias, repoDocentes);
-            EscolarView view = new EscolarView();
-            EscolarController cctr = new EscolarController(model, view);
-
-            /* Cargar datos de prueba
-            model.AgregarPersona(new Alumno("Ana", "ana@mail.com", 1001));
-            model.AgregarPersona(new Alumno("Bruno", "bruno@mail.com", 1002));
-            model.AgregarMateria(new Materia("MAT101", "Matematica I", 3));
-            */
-
-            cctr.Ejecutar();
         }
 
         /*

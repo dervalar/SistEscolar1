@@ -39,6 +39,7 @@ namespace SistEscolar1.Model
         {
             _repoAlumnos.Guardar();
             _repoMaterias.Guardar();
+            _repoDocentes.Guardar();
         }
 
     }
