@@ -14,22 +14,24 @@ namespace SistEscolar1.Model
     {
         private readonly IRepositorioAlumnos _repoAlumnos;
         private readonly IRepositorioMaterias _repoMaterias;
+        private readonly IRepositorioDocentes _repoDocentes;
 
         // Los repositorios se inyectan desde Program.cs
-        public EscolarModel(IRepositorioAlumnos repoAlumnos,
-        IRepositorioMaterias repoMaterias)
+        public EscolarModel(IRepositorioAlumnos repoAlumnos, IRepositorioMaterias repoMaterias, IRepositorioDocentes repoDocentes)
         {
             _repoAlumnos = repoAlumnos;
             _repoMaterias = repoMaterias;
+            _repoDocentes = repoDocentes;
         }
         public void AgregarAlumno(Alumno a) => _repoAlumnos.Agregar(a);
         public void AgregarMateria(Materia m) => _repoMaterias.Agregar(m);
+        public void AgregarDocente(Docente d) => _repoDocentes.Agregar(d);
         public List<Alumno> ObtenerAlumnos() => _repoAlumnos.ObtenerTodos();
+        public List<Docente> ObtenerDocente() => _repoDocentes.ObtenerTodos();
         public List<Materia> ObtenerMaterias() => _repoMaterias.ObtenerTodos();
-        public Alumno? BuscarAlumno(int legajo) =>
-        _repoAlumnos.BuscarPorLegajo(legajo);
-        public Materia? BuscarMateria(string codigo) =>
-        _repoMaterias.BuscarPorCodigos(codigo);
+        public Alumno? BuscarAlumno(int legajo) => _repoAlumnos.BuscarPorLegajo(legajo);
+        public Docente? BuscarDocente(int noEmpleado) => _repoDocentes.BuscarPorNumeroDeEmpleado(noEmpleado);
+        public Materia? BuscarMateria(string codigo) => _repoMaterias.BuscarPorCodigos(codigo);
 
         // Llama a Guardar() en todos los repositorios.
         // En memoria no hace nada; en JSON guarda los archivos.
@@ -39,9 +41,5 @@ namespace SistEscolar1.Model
             _repoMaterias.Guardar();
         }
 
-        internal void AgregarPersona(Docente docente)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

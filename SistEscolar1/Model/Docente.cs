@@ -9,9 +9,9 @@ namespace SistEscolar1.Model
 {
      public class Docente : Persona, IReportable
     {
-        public string NoEmpleado { get; private set; }
+        public int NoEmpleado { get; private set; }
 
-        public Docente(string nombre, string email, string noEmpleado) :base(nombre, email)
+        public Docente(string nombre, string email, int noEmpleado) :base(nombre, email)
         {
             NoEmpleado = noEmpleado;
         }

@@ -29,25 +29,28 @@ namespace SistEscolar1
             
             IRepositorioAlumnos repoAlumnos;
             IRepositorioMaterias repoMaterias;
+            IRepositorioDocentes repoDocentes;
             
             if (opcionInicio == "2")
             { 
 
                 repoAlumnos = new RepositorioAlumnoJSON("alumnos.json");
-                repoMaterias = new RepositorioMateriasJSON("materias.jseon", repoAlumnos);
+                repoMaterias = new RepositorioMateriasJSON("materias.json", repoAlumnos);
                 Console.WriteLine("→ Cargando datos desde disco...");
             }
             else
             {
                 repoAlumnos = new RepositorioAlumnosMemoria();
                 repoMaterias = new RepositorioMateriasMemoria();
+                repoDocentes = new 
                 repoAlumnos.Agregar(new Alumno("Ana", "ana@mail.com", 1001));
                 repoAlumnos.Agregar(new Alumno("Bruno", "bruno@mail.com", 1002));
+                repoDocentes.Agregar(new Docente("Mati Mestre", "Mestre@mail.com", 7));
                 repoMaterias.Agregar(new Materia("MAT101", "Matematica I", 3));
                 Console.WriteLine("→ Sistema iniciado con datos de prueba.");
             }
 
-            EscolarModel model = new EscolarModel(repoAlumnos,repoMaterias);
+            EscolarModel model = new EscolarModel(repoAlumnos, repoMaterias, repoDocentes);
             EscolarView view = new EscolarView();
             EscolarController cctr = new EscolarController(model, view);
 
