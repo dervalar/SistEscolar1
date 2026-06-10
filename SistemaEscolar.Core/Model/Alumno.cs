@@ -1,4 +1,5 @@
-﻿using SistEscolar1.Model.Interface;
+﻿using SistemaEscolar.Core.Model.Observer;
+using SistEscolar1.Model.Interface;
 using SistEscolar1.Model.Strategies;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,25 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Model
 {
-     public class Alumno : Persona, ICalificable, IReportable
+     public class Alumno : Persona, ICalificable, IReportable, ISujetoEscolar
     {
         public int Legajo { get; private set; }
         public string NombreEstrategia { get; internal set; }
 
         private List<double> _notas = new List<double>();
         private IStratPromedio _estrategia;
-        
+        private readonly List<IObservadorEscolar> _observadores = new();
+
+        // ── Observer ──────────────────────────────────────────────────────
+        public void Suscribir(IObservadorEscolar obs) => _observadores.Add(obs);
+        public void Desuscribir(IObservadorEscolar obs) => _observadores.Remove(obs);
+        public void Notificar(CambioEscolar cambio, object dato)
+        {
+            // Notifica a cada observador registrado
+            foreach (var obs in _observadores)
+                obs.Actualizar(cambio, dato);
+        }
+
         // Permite que el repo JSON lea las notas para guardarlas en disco
         public List<double> ObtenerNotas() => new List<double>(_notas);
 
@@ -26,6 +38,7 @@ namespace SistEscolar1.Model
             foreach (var n in notas)
             {
                 _notas.Add(n);
+                Notificar(CambioEscolar.NotaCargada, n);
             }
         }
 
@@ -77,6 +90,7 @@ namespace SistEscolar1.Model
         public void CambiarEstrategia(IStratPromedio nueva)
         {
             _estrategia = nueva;
+            Notificar(CambioEscolar.EstrategiaCambiada, _notas);
         }
 
        

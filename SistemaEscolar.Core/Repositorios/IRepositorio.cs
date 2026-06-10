@@ -11,6 +11,7 @@ namespace SistEscolar1.Repositorios
     public interface IRepositorio<T>
     {
         void Agregar(T entidad);
+        void Eliminar(T entidad);
         T? BuscarPorId(string id);
         List<T> ObtenerTodos();
         void Guardar(); // Persiste los cambios. Puede ser un no-op en memoria.

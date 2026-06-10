@@ -73,5 +73,10 @@ namespace SistEscolar1.Repositorios
         {
             throw new NotImplementedException();
         }
+
+        public void Eliminar(Alumno entidad)
+        {
+            _alumnos.Remove(entidad);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SistEscolar1.Excepciones;
+﻿using SistemaEscolar.Core.Model.Observer;
+using SistEscolar1.Excepciones;
 using SistEscolar1.Model.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,29 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Model
 {
-    public class Materia : IInscribible, IReportable
+    public class Materia : IInscribible, IReportable, ISujetoEscolar
     {
         public string Codigo { get; private set; }
         public string Nombre { get; private set; }
         public int Cupo { get; private set; }
 
         private List<Persona> inscriptos = new List<Persona>();
+        private readonly List<IObservadorEscolar> _observadores = new();
 
         public Materia(string codigo, string nombre, int cupo)
         {
             Codigo = codigo;
             Nombre = nombre;
             Cupo = cupo;
+        }
+        // ── Observer ──────────────────────────────────────────────────────
+        public void Suscribir(IObservadorEscolar obs) => _observadores.Add(obs);
+        public void Desuscribir(IObservadorEscolar obs) => _observadores.Remove(obs);
+        public void Notificar(CambioEscolar cambio, object dato)
+        {
+            // Notifica a cada observador registrado
+            foreach (var obs in _observadores)
+                obs.Actualizar(cambio, dato);
         }
 
         public List<Persona> devolverInscriptos()
@@ -40,6 +51,7 @@ namespace SistEscolar1.Model
                     {
                         inscriptos.Add(p);
                         Console.WriteLine("Se ha añadido correctamente...");
+                        Notificar(CambioEscolar.AlumnoInscripto, p);
                     }
                     else
                     {

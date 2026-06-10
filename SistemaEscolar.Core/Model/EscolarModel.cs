@@ -1,4 +1,5 @@
-﻿using SistEscolar1.Repositorios;
+﻿using SistemaEscolar.Core.Model.Observer;
+using SistEscolar1.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Model
 {
-    public class EscolarModel
+    public class EscolarModel : ISujetoEscolar
     {
         private readonly IRepositorioAlumnos _repoAlumnos;
         private readonly IRepositorioMaterias _repoMaterias;
         private readonly IRepositorioDocentes _repoDocentes;
+        // Lista de observadores suscritos
+        private readonly List<IObservadorEscolar> _observadores = new();
 
         // Los repositorios se inyectan desde Program.cs
         public EscolarModel(IRepositorioAlumnos repoAlumnos, IRepositorioMaterias repoMaterias, IRepositorioDocentes repoDocentes)
@@ -21,9 +24,38 @@ namespace SistEscolar1.Model
             _repoMaterias = repoMaterias;
             _repoDocentes = repoDocentes;
         }
-        public void AgregarAlumno(Alumno a) => _repoAlumnos.Agregar(a);
-        public void AgregarMateria(Materia m) => _repoMaterias.Agregar(m);
-        public void AgregarDocente(Docente d) => _repoDocentes.Agregar(d);
+
+        // ── Observer ──────────────────────────────────────────────────────
+        public void Suscribir(IObservadorEscolar obs) => _observadores.Add(obs);
+        public void Desuscribir(IObservadorEscolar obs) => _observadores.Remove(obs);
+        public void Notificar(CambioEscolar cambio, object dato)
+        {
+            // Notifica a cada observador registrado
+            foreach (var obs in _observadores)
+                obs.Actualizar(cambio, dato);
+        }
+
+        public void AgregarAlumno(Alumno a)
+        {
+            _repoAlumnos.Agregar(a);
+            Notificar(CambioEscolar.AlumnoAgregado, a);
+        }
+
+        public void EliminarAlumno(Alumno a)
+        {
+            _repoAlumnos.Eliminar(a);
+            Notificar(CambioEscolar.AlumnoEliminado, a);
+        }
+        public void AgregarMateria(Materia m)
+        {
+            _repoMaterias.Agregar(m);
+            Notificar(CambioEscolar.MateriaAgregada, m);
+        }
+        public void AgregarDocente(Docente d)
+        {
+            _repoDocentes.Agregar(d);
+            Notificar(CambioEscolar.DocenteAgregado, d);
+        }
         public List<Alumno> ObtenerAlumnos() => _repoAlumnos.ObtenerTodos();
         public List<Docente> ObtenerDocente() => _repoDocentes.ObtenerTodos();
         public List<Materia> ObtenerMaterias() => _repoMaterias.ObtenerTodos();
