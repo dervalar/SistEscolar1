@@ -1,6 +1,7 @@
 ﻿namespace SistemaEscolar.UI
+
 {
-    partial class Form1
+    partial class FormPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,10 +29,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            SuspendLayout();
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Name = "Form1";
+            Text = "Form1";
+            Load += Form1_Load;
+            ResumeLayout(false);
         }
 
         #endregion

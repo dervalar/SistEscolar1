@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36212.18 d17.14
+VisualStudioVersion = 17.14.36212.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistEscolar1", "SistEscolar1\SistEscolar1.csproj", "{98CB68CA-38C8-4766-B030-D1A4FF1FB4F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEscolar.Core", "SistemaEscolar.Core\SistemaEscolar.Core.csproj", "{3794BFD3-A0B2-4A4C-A10C-6AC1331C14F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEscolar.UI", "SistemaEscolar.UI\SistemaEscolar.UI.csproj", "{3B5D5B29-F838-485C-A257-F3EB22A7C518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{98CB68CA-38C8-4766-B030-D1A4FF1FB4F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98CB68CA-38C8-4766-B030-D1A4FF1FB4F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98CB68CA-38C8-4766-B030-D1A4FF1FB4F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3794BFD3-A0B2-4A4C-A10C-6AC1331C14F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3794BFD3-A0B2-4A4C-A10C-6AC1331C14F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3794BFD3-A0B2-4A4C-A10C-6AC1331C14F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3794BFD3-A0B2-4A4C-A10C-6AC1331C14F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B5D5B29-F838-485C-A257-F3EB22A7C518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5D5B29-F838-485C-A257-F3EB22A7C518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5D5B29-F838-485C-A257-F3EB22A7C518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5D5B29-F838-485C-A257-F3EB22A7C518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

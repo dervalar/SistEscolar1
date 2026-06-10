@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Excepciones
 {
-    internal class EntidadNoEncontradaException : Exception
+    public class EntidadNoEncontradaException : Exception
     {
         public EntidadNoEncontradaException(string tipo, string identificador)
             :base($"{tipo} con identificador '{identificador}' no encontrado/a.")

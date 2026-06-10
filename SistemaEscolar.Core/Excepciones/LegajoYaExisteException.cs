@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistEscolar1.Excepciones
 {
-    internal class LegajoYaExisteException : Exception
+    public class LegajoYaExisteException : Exception
     {
         public int Legajo { get; }
         public LegajoYaExisteException(int legajo)
