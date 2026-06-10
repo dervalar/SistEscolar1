@@ -41,6 +41,14 @@ namespace SistEscolar1.Model
             _repoMaterias.Guardar();
             _repoDocentes.Guardar();
         }
+        //Método que uné las listas
+        public List<Persona> ObtenerPersonas()
+        {
+            List<Persona> todas = new List<Persona>();
+            todas.AddRange(_repoAlumnos.ObtenerTodos());
+            todas.AddRange(_repoDocentes.ObtenerTodos());
+            return todas;
+        }
 
     }
 }

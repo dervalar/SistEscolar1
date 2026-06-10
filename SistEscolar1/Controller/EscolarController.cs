@@ -30,7 +30,7 @@ namespace SistEscolar1.Controller
                 string opcion = _view.PedirTexto("");
                 switch (opcion)
                 {
-                    case "1": _view.MostrarAlumnos(_model.ObtenerAlumnos()); break;
+                    case "1": _view.MostrarPersonas(_model.ObtenerPersonas()); break;               
                     case "2": AgregarAlumno(); break;
                     case "3": AgregarDocente(); break;
                     case "4": InscribirAlumno(); break;
