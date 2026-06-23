@@ -37,10 +37,19 @@ namespace SistEscolar1.Model
 
         public void AgregarAlumno(Alumno a)
         {
-            _repoAlumnos.Agregar(a);
+            _repoAlumnos.Agregar(a);                        
             Notificar(CambioEscolar.AlumnoAgregado, a);
         }
-
+        public void InscribirAlumno(Alumno alumno, Materia materia)
+        {
+            materia.Inscribir(alumno);
+            Notificar(CambioEscolar.AlumnoInscripto, alumno);
+        }
+        public void CargarNota(Alumno alumno, double nota)
+        {
+            alumno.AgregarNota(nota);
+            Notificar(CambioEscolar.NotaCargada, alumno);
+        }
         public void EliminarAlumno(Alumno a)
         {
             _repoAlumnos.Eliminar(a);
@@ -56,6 +65,7 @@ namespace SistEscolar1.Model
             _repoDocentes.Agregar(d);
             Notificar(CambioEscolar.DocenteAgregado, d);
         }
+        //-----------------------------------------------------------
         public List<Alumno> ObtenerAlumnos() => _repoAlumnos.ObtenerTodos();
         public List<Docente> ObtenerDocente() => _repoDocentes.ObtenerTodos();
         public List<Materia> ObtenerMaterias() => _repoMaterias.ObtenerTodos();
