@@ -26,5 +26,9 @@ namespace SistEscolar1.Repositorios
         public List<Docente> ObtenerTodos() => new(_docentes);
 
         public void Guardar() { }
+        public void Eliminar(Docente docente)
+        {
+            _docentes.Remove(docente);
+        }
     }
 }

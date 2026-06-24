@@ -79,5 +79,9 @@ namespace SistEscolar1.Repositorios
         {
             throw new NotImplementedException();
         }
+        public void Eliminar(Docente docente)
+        {
+            _alumnos.Remove(docente);
+        }
     }
 }

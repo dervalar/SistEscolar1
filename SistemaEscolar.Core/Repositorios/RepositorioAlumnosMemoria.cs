@@ -17,6 +17,12 @@ namespace SistEscolar1.Repositorios
                 throw new LegajoYaExisteException(alumno.Legajo);
             _alumnos.Add(alumno);
         }
+
+        public void Eliminar(Alumno alumno)
+        {
+            _alumnos.Remove(alumno);
+        }
+
         public Alumno? BuscarPorId(string id) =>
         _alumnos.FirstOrDefault(a => a.Legajo.ToString() == id);
         public Alumno? BuscarPorLegajo(int legajo) =>

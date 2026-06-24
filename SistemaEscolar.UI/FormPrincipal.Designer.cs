@@ -1,4 +1,7 @@
-﻿namespace SistemaEscolar.UI
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace SistemaEscolar.UI
 
 {
     partial class FormPrincipal
@@ -38,7 +41,6 @@
             ClientSize = new Size(800, 450);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
         }
 

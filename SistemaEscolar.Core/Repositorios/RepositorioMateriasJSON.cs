@@ -57,6 +57,10 @@ namespace SistEscolar1.Repositorios
         _materias.FirstOrDefault(m => m.Codigo == c);
         public List<Materia> ObtenerTodos() => new(_materias);
 
+        public void Eliminar(Materia materia)
+        {
+            _materias.Remove(materia);
+        }
         public Materia BuscarPorCodigos(string codigo)
         {
             throw new NotImplementedException();
