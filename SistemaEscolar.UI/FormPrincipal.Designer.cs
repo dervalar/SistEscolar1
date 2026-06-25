@@ -34,20 +34,20 @@ namespace SistemaEscolar.UI
         {
             tabControl1 = new TabControl();
             Alumno = new TabPage();
-            Materias = new TabPage();
-            dgvAlumnos = new DataGridView();
-            btnAgregarAlumno = new Button();
-            btnEditarAlumno = new Button();
             btnEliminarAlumno = new Button();
-            dgvMaterias = new DataGridView();
-            btnAgregarMateria = new Button();
-            btnEditarMateria = new Button();
-            btnEliminarMateria = new Button();
+            btnEditarAlumno = new Button();
+            btnAgregarAlumno = new Button();
+            dgvAlumnos = new DataGridView();
+            Materias = new TabPage();
             btnInscribir = new Button();
+            btnEliminarMateria = new Button();
+            btnEditarMateria = new Button();
+            btnAgregarMateria = new Button();
+            dgvMaterias = new DataGridView();
             tabControl1.SuspendLayout();
             Alumno.SuspendLayout();
-            Materias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAlumnos).BeginInit();
+            Materias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).BeginInit();
             SuspendLayout();
             // 
@@ -75,6 +75,47 @@ namespace SistemaEscolar.UI
             Alumno.Text = "Alumnos";
             Alumno.UseVisualStyleBackColor = true;
             // 
+            // btnEliminarAlumno
+            // 
+            btnEliminarAlumno.Location = new Point(587, 437);
+            btnEliminarAlumno.Name = "btnEliminarAlumno";
+            btnEliminarAlumno.Size = new Size(217, 38);
+            btnEliminarAlumno.TabIndex = 3;
+            btnEliminarAlumno.Text = "Eliminar Alumno";
+            btnEliminarAlumno.UseVisualStyleBackColor = true;
+            btnEliminarAlumno.Click += btnEliminarAlumno_Click_1;
+            // 
+            // btnEditarAlumno
+            // 
+            btnEditarAlumno.Location = new Point(331, 437);
+            btnEditarAlumno.Name = "btnEditarAlumno";
+            btnEditarAlumno.Size = new Size(211, 38);
+            btnEditarAlumno.TabIndex = 2;
+            btnEditarAlumno.Text = "Editar Alumno";
+            btnEditarAlumno.UseVisualStyleBackColor = true;
+            btnEditarAlumno.Click += btnEditarAlumno_Click;
+            // 
+            // btnAgregarAlumno
+            // 
+            btnAgregarAlumno.Location = new Point(51, 437);
+            btnAgregarAlumno.Name = "btnAgregarAlumno";
+            btnAgregarAlumno.Size = new Size(205, 38);
+            btnAgregarAlumno.TabIndex = 1;
+            btnAgregarAlumno.Text = "Agregar Alumno";
+            btnAgregarAlumno.UseVisualStyleBackColor = true;
+            btnAgregarAlumno.Click += btnAgregarAlumno_Click_1;
+            // 
+            // dgvAlumnos
+            // 
+            dgvAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAlumnos.Location = new Point(13, 10);
+            dgvAlumnos.Name = "dgvAlumnos";
+            dgvAlumnos.ReadOnly = true;
+            dgvAlumnos.RowHeadersWidth = 51;
+            dgvAlumnos.RowTemplate.Height = 29;
+            dgvAlumnos.Size = new Size(834, 402);
+            dgvAlumnos.TabIndex = 0;
+            // 
             // Materias
             // 
             Materias.Controls.Add(btnInscribir);
@@ -90,43 +131,44 @@ namespace SistemaEscolar.UI
             Materias.Text = "Materias";
             Materias.UseVisualStyleBackColor = true;
             // 
-            // dgvAlumnos
+            // btnInscribir
             // 
-            dgvAlumnos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAlumnos.Location = new Point(13, 10);
-            dgvAlumnos.Name = "dgvAlumnos";
-            dgvAlumnos.ReadOnly = true;
-            dgvAlumnos.RowHeadersWidth = 51;
-            dgvAlumnos.RowTemplate.Height = 29;
-            dgvAlumnos.Size = new Size(834, 402);
-            dgvAlumnos.TabIndex = 0;
+            btnInscribir.Location = new Point(695, 471);
+            btnInscribir.Name = "btnInscribir";
+            btnInscribir.Size = new Size(155, 25);
+            btnInscribir.TabIndex = 4;
+            btnInscribir.Text = "Inscribir Alumno";
+            btnInscribir.UseVisualStyleBackColor = true;
+            btnInscribir.Click += btnInscribir_Click_1;
             // 
-            // btnAgregarAlumno
+            // btnEliminarMateria
             // 
-            btnAgregarAlumno.Location = new Point(51, 437);
-            btnAgregarAlumno.Name = "btnAgregarAlumno";
-            btnAgregarAlumno.Size = new Size(205, 38);
-            btnAgregarAlumno.TabIndex = 1;
-            btnAgregarAlumno.Text = "Agregar Alumno";
-            btnAgregarAlumno.UseVisualStyleBackColor = true;
+            btnEliminarMateria.Location = new Point(491, 441);
+            btnEliminarMateria.Name = "btnEliminarMateria";
+            btnEliminarMateria.Size = new Size(198, 34);
+            btnEliminarMateria.TabIndex = 3;
+            btnEliminarMateria.Text = "Eliminar Materia";
+            btnEliminarMateria.UseVisualStyleBackColor = true;
+            btnEliminarMateria.Click += btnEliminarMateria_Click;
             // 
-            // btnEditarAlumno
+            // btnEditarMateria
             // 
-            btnEditarAlumno.Location = new Point(331, 437);
-            btnEditarAlumno.Name = "btnEditarAlumno";
-            btnEditarAlumno.Size = new Size(211, 38);
-            btnEditarAlumno.TabIndex = 2;
-            btnEditarAlumno.Text = "Editar Alumno";
-            btnEditarAlumno.UseVisualStyleBackColor = true;
+            btnEditarMateria.Location = new Point(267, 441);
+            btnEditarMateria.Name = "btnEditarMateria";
+            btnEditarMateria.Size = new Size(189, 34);
+            btnEditarMateria.TabIndex = 2;
+            btnEditarMateria.Text = "Editar Materia";
+            btnEditarMateria.UseVisualStyleBackColor = true;
             // 
-            // btnEliminarAlumno
+            // btnAgregarMateria
             // 
-            btnEliminarAlumno.Location = new Point(587, 437);
-            btnEliminarAlumno.Name = "btnEliminarAlumno";
-            btnEliminarAlumno.Size = new Size(217, 38);
-            btnEliminarAlumno.TabIndex = 3;
-            btnEliminarAlumno.Text = "Eliminar Alumno";
-            btnEliminarAlumno.UseVisualStyleBackColor = true;
+            btnAgregarMateria.Location = new Point(41, 441);
+            btnAgregarMateria.Name = "btnAgregarMateria";
+            btnAgregarMateria.Size = new Size(187, 34);
+            btnAgregarMateria.TabIndex = 1;
+            btnAgregarMateria.Text = "Agregar Materia";
+            btnAgregarMateria.UseVisualStyleBackColor = true;
+            btnAgregarMateria.Click += btnAgregarMateria_Click_1;
             // 
             // dgvMaterias
             // 
@@ -139,42 +181,6 @@ namespace SistemaEscolar.UI
             dgvMaterias.Size = new Size(832, 411);
             dgvMaterias.TabIndex = 0;
             // 
-            // btnAgregarMateria
-            // 
-            btnAgregarMateria.Location = new Point(41, 441);
-            btnAgregarMateria.Name = "btnAgregarMateria";
-            btnAgregarMateria.Size = new Size(187, 34);
-            btnAgregarMateria.TabIndex = 1;
-            btnAgregarMateria.Text = "Agregar Materia";
-            btnAgregarMateria.UseVisualStyleBackColor = true;
-            // 
-            // btnEditarMateria
-            // 
-            btnEditarMateria.Location = new Point(267, 441);
-            btnEditarMateria.Name = "btnEditarMateria";
-            btnEditarMateria.Size = new Size(189, 34);
-            btnEditarMateria.TabIndex = 2;
-            btnEditarMateria.Text = "Editar Materia";
-            btnEditarMateria.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminarMateria
-            // 
-            btnEliminarMateria.Location = new Point(491, 441);
-            btnEliminarMateria.Name = "btnEliminarMateria";
-            btnEliminarMateria.Size = new Size(198, 34);
-            btnEliminarMateria.TabIndex = 3;
-            btnEliminarMateria.Text = "Eliminar Materia";
-            btnEliminarMateria.UseVisualStyleBackColor = true;
-            // 
-            // btnInscribir
-            // 
-            btnInscribir.Location = new Point(695, 471);
-            btnInscribir.Name = "btnInscribir";
-            btnInscribir.Size = new Size(155, 25);
-            btnInscribir.TabIndex = 4;
-            btnInscribir.Text = "Inscribir Alumno";
-            btnInscribir.UseVisualStyleBackColor = true;
-            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -182,13 +188,13 @@ namespace SistemaEscolar.UI
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(882, 553);
             Controls.Add(tabControl1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "FormPrincipal";
             Text = "Sistema Escolar";
             tabControl1.ResumeLayout(false);
             Alumno.ResumeLayout(false);
-            Materias.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvAlumnos).EndInit();
+            Materias.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvMaterias).EndInit();
             ResumeLayout(false);
         }

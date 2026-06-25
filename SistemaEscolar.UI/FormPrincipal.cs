@@ -11,7 +11,7 @@ namespace SistemaEscolar.UI
         private readonly EscolarControllerUI _controller;
         public FormPrincipal(EscolarModel model, EscolarControllerUI controller)
         {
-            
+
             InitializeComponent();
             _model = model;
             _controller = controller;
@@ -103,6 +103,53 @@ namespace SistemaEscolar.UI
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAgregarAlumno_Click_1(object sender, EventArgs e)
+        {
+            using var form = new FormAlumno(_controller);
+            form.ShowDialog();
+        }
+
+        private void btnEditarAlumno_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEliminarAlumno_Click_1(object sender, EventArgs e)
+        {
+            if (dgvAlumnos.CurrentRow?.DataBoundItem is Alumno alumno)
+                _controller.EliminarAlumno(alumno);
+            else
+                MessageBox.Show("Seleccioná un alumno de la tabla.",
+                "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnAgregarMateria_Click_1(object sender, EventArgs e)
+        {
+            using var form = new FormMateria(_controller);
+            form.ShowDialog();
+        }
+
+        private void btnEliminarMateria_Click(object sender, EventArgs e)
+        {
+            if (dgvMaterias.CurrentRow?.DataBoundItem is Materia materia)
+                _controller.EliminarMateria(materia);
+            else
+                MessageBox.Show("Seleccioná un alumno de la tabla.",
+                "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnInscribir_Click_1(object sender, EventArgs e)
+        {
+            if (dgvMaterias.CurrentRow?.DataBoundItem is Materia materia)
+            {
+                using var form = new FormInscripcion(_controller, _model, materia);
+                form.ShowDialog();
+            }
+            else
+                MessageBox.Show("Seleccioná una materia de la tabla.",
+                "Sin selección", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

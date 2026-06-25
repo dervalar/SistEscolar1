@@ -55,6 +55,11 @@ namespace SistEscolar1.Model
             _repoAlumnos.Eliminar(a);
             Notificar(CambioEscolar.AlumnoEliminado, a);
         }
+        public void EliminarMateria(Materia a)
+        {
+            _repoMaterias.Eliminar(a);
+            Notificar(CambioEscolar.MateriaEliminada, a);
+        }
         public void AgregarMateria(Materia m)
         {
             _repoMaterias.Agregar(m);

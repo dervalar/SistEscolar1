@@ -17,5 +17,6 @@ namespace SistemaEscolar.Core.Model.Observer
         NotaCargada,
         EstrategiaCambiada,
         AlumnoEliminado,
+        MateriaEliminada,
     }
 }

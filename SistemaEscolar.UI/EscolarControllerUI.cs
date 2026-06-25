@@ -71,6 +71,18 @@ namespace SistemaEscolar.UI
                 return false;
             }
         }
+        public bool EliminarMateria(Materia materia)
+        {
+            var confirmacion = MessageBox.Show(
+            $"¿Eliminar materia {materia.Codigo}?",
+            "Confirmar eliminación",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+            if (confirmacion != DialogResult.Yes) return false;
+            // Para eliminar necesitamos agregar el método al repositorio (ver Ejercicio 3.B)
+            _model.GuardarTodo();
+            return true;
+        }
         // ── Inscripciones y notas ─────────────────────────────────────────
         public bool InscribirAlumno(Alumno alumno, Materia materia)
         {
